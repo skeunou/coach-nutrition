@@ -308,7 +308,7 @@ async function generatePlan() {
   document.getElementById("loading").classList.add("on");
   document.getElementById("gen-btn").disabled = true;
   try {
-    const resp = await fetch("https://api.anthropic.com/v1/messages", {
+    const resp = await fetch("https://coach-nutrition.netlify.app/.netlify/functions/generate", {
       method:"POST", headers:{"Content-Type":"application/json"},
       body: JSON.stringify({ model:"claude-sonnet-4-20250514", max_tokens:4000,
         messages:[{role:"user",content:buildPrompt()}] })
