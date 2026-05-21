@@ -7,176 +7,132 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:   #0d0d0f;
-    --surf: #141416;
-    --surf2:#1c1c20;
-    --bdr:  #2a2a30;
-    --acc:  #e8ff47;
-    --acc2: #ff6b35;
-    --warn: #ff9500;
-    --txt:  #f0f0f0;
-    --mut:  #6b6b78;
-    --grn:  #4ade80;
-    --red:  #f87171;
-    --blue: #60a5fa;
-    --purp: #a78bfa;
+    --bg:#0d0d0f; --surf:#141416; --surf2:#1c1c20; --bdr:#2a2a30;
+    --acc:#e8ff47; --acc2:#ff6b35; --warn:#ff9500; --txt:#f0f0f0;
+    --mut:#6b6b78; --grn:#4ade80; --red:#f87171; --purp:#a78bfa;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-  body { background: var(--bg); color: var(--txt); font-family: 'DM Sans', system-ui, sans-serif; font-size: 14px; min-height: 100vh; }
-  .bb { font-family: 'Bebas Neue', sans-serif; }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{background:var(--bg);color:var(--txt);font-family:'DM Sans',system-ui,sans-serif;font-size:14px;min-height:100vh}
+  .bb{font-family:'Bebas Neue',sans-serif}
 
-  /* ── HEADER ── */
-  #header {
-    position: sticky; top: 0; z-index: 100;
-    background: var(--bg); border-bottom: 2px solid var(--acc);
-    padding: 14px 14px 0;
-  }
-  .header-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 10px; }
-  .header-label { font-family:'Bebas Neue',sans-serif; font-size:10px; letter-spacing:3px; color:var(--acc); text-transform:uppercase; margin-bottom:2px; }
-  .header-title { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:1px; line-height:1; color:var(--txt); }
-  .header-badge { font-size:10px; font-weight:600; padding:4px 8px; border-radius:4px; background:rgba(255,107,53,0.15); color:var(--acc2); border:1px solid rgba(255,107,53,0.3); white-space:nowrap; flex-shrink:0; }
+  #header{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:2px solid var(--acc)}
+  #header-top{padding:14px 14px 10px;display:flex;justify-content:space-between;align-items:flex-start}
+  #session-badge{font-size:10px;font-weight:600;padding:4px 8px;border-radius:4px;background:rgba(255,107,53,.15);color:var(--acc2);border:1px solid rgba(255,107,53,.3);white-space:nowrap;flex-shrink:0}
 
-  /* ── TABS ── */
-  #tabs { display:flex; background:var(--surf); border-bottom:1px solid var(--bdr); overflow-x:auto; scrollbar-width:none; }
-  #tabs::-webkit-scrollbar { display:none; }
-  .tab-btn { flex:1; padding:11px 6px; text-align:center; font-family:'Bebas Neue',sans-serif; font-size:11px; letter-spacing:2px; cursor:pointer; color:var(--mut); background:none; border:none; border-bottom:2px solid transparent; white-space:nowrap; }
-  .tab-btn.active { color:var(--acc); border-bottom-color:var(--acc); }
+  #tabs{display:flex;background:var(--surf);border-bottom:1px solid var(--bdr);overflow-x:auto;scrollbar-width:none}
+  #tabs::-webkit-scrollbar{display:none}
+  .tab-btn{flex:1;padding:11px 6px;text-align:center;font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:2px;cursor:pointer;color:var(--mut);background:none;border:none;border-bottom:2px solid transparent;white-space:nowrap}
+  .tab-btn.active{color:var(--acc);border-bottom-color:var(--acc)}
 
-  /* ── CONTENT ── */
-  #content { padding: 12px 14px 80px; }
-  .tab-pane { display: none; }
-  .tab-pane.active { display: block; }
+  #content{padding:12px 14px 80px}
+  .tab-pane{display:none}.tab-pane.active{display:block}
 
-  /* ── CARDS ── */
-  .card { background:var(--surf); border:1px solid var(--bdr); border-radius:10px; padding:14px; margin-bottom:10px; }
-  .card.accent { border-color: rgba(232,255,71,0.3); }
-  .card.warn { border-color: rgba(255,149,0,0.4); }
-  .section-lbl { font-family:'Bebas Neue',sans-serif; font-size:14px; letter-spacing:2px; color:var(--mut); margin-bottom:12px; }
+  .card{background:var(--surf);border:1px solid var(--bdr);border-radius:10px;padding:14px;margin-bottom:10px}
+  .card.accent{border-color:rgba(232,255,71,.3)}
+  .section-lbl{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2px;color:var(--mut);margin-bottom:12px}
 
-  /* ── FORM ELEMENTS ── */
-  .form-group { margin-bottom: 14px; }
-  .form-label { font-size:10px; color:var(--mut); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px; display:block; }
-  .btn-group { display:flex; flex-wrap:wrap; gap:6px; }
-  .toggle-btn { padding:9px 12px; border:1.5px solid var(--bdr); background:var(--surf2); color:var(--mut); border-radius:6px; font-family:'DM Sans',sans-serif; font-size:12px; font-weight:500; cursor:pointer; }
-  .toggle-btn.active { border-color:var(--acc); background:rgba(232,255,71,0.08); color:var(--acc); font-weight:600; }
-  .toggle-btn.active-ora { border-color:var(--acc2); background:rgba(255,107,53,0.08); color:var(--acc2); font-weight:600; }
-  .chip-btn { padding:7px 10px; border:1.5px solid var(--bdr); background:var(--surf2); color:var(--mut); border-radius:20px; font-size:11px; font-weight:500; cursor:pointer; }
-  .chip-btn.active { border-color:var(--acc); color:var(--acc); background:rgba(232,255,71,0.06); }
+  .form-lbl{font-size:10px;color:var(--mut);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block}
+  .form-group{margin-bottom:14px}
+  .btn-group{display:flex;flex-wrap:wrap;gap:6px}
+  .toggle-btn{padding:9px 12px;border:1.5px solid var(--bdr);background:var(--surf2);color:var(--mut);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer}
+  .toggle-btn.active{border-color:var(--acc);background:rgba(232,255,71,.08);color:var(--acc);font-weight:600}
+  .toggle-btn.active-ora{border-color:var(--acc2);background:rgba(255,107,53,.08);color:var(--acc2);font-weight:600}
+  .toggle-btn.active-grn{border-color:var(--grn);background:rgba(74,222,128,.08);color:var(--grn);font-weight:600}
+  .toggle-btn.active-warn{border-color:var(--warn);background:rgba(255,149,0,.08);color:var(--warn);font-weight:600}
 
-  select, textarea, input[type=number] {
-    width:100%; background:var(--surf2); border:1px solid var(--bdr); border-radius:6px;
-    padding:10px 12px; color:var(--txt); font-family:'DM Sans',sans-serif; font-size:13px;
-    outline:none; -webkit-appearance:none;
-  }
-  textarea { resize:none; min-height:70px; }
-  select option { background: var(--surf2); }
+  .days-row{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+  .day-btn{padding:10px 4px;border:1.5px solid var(--bdr);background:var(--surf2);color:var(--mut);border-radius:6px;font-family:'Bebas Neue',sans-serif;font-size:16px;cursor:pointer;text-align:center}
+  .day-btn.active{border-color:var(--acc);background:rgba(232,255,71,.08);color:var(--acc)}
 
-  .days-row { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; }
-  .day-btn { padding:10px 4px; border:1.5px solid var(--bdr); background:var(--surf2); color:var(--mut); border-radius:6px; font-family:'Bebas Neue',sans-serif; font-size:14px; cursor:pointer; text-align:center; }
-  .day-btn.active { border-color:var(--acc); background:rgba(232,255,71,0.08); color:var(--acc); }
+  textarea{width:100%;background:var(--surf2);border:1px solid var(--bdr);border-radius:6px;padding:8px 10px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:12px;resize:none;outline:none;min-height:52px}
 
-  /* ── BUTTONS ── */
-  .btn-primary { width:100%; padding:16px; background:var(--acc); color:#000; border:none; border-radius:8px; font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:2px; cursor:pointer; margin-top:8px; }
-  .btn-primary:disabled { opacity:.4; cursor:not-allowed; }
-  .btn-secondary { width:100%; padding:13px; background:var(--surf2); color:var(--acc); border:1px solid rgba(232,255,71,0.3); border-radius:8px; font-family:'Bebas Neue',sans-serif; font-size:15px; letter-spacing:1px; cursor:pointer; margin-top:8px; }
-  .btn-copy { width:100%; padding:12px; background:var(--surf2); color:var(--txt); border:1px solid var(--bdr); border-radius:8px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; cursor:pointer; margin-bottom:10px; }
-  .btn-small { padding:6px 12px; background:var(--surf2); color:var(--mut); border:1px solid var(--bdr); border-radius:6px; font-size:11px; font-weight:600; cursor:pointer; }
-  .btn-small.danger { color:var(--red); border-color:rgba(248,113,113,0.3); }
+  .btn-primary{width:100%;padding:16px;background:var(--acc);color:#000;border:none;border-radius:8px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;cursor:pointer;margin-top:8px}
+  .btn-primary:disabled{opacity:.4;cursor:not-allowed}
+  .btn-copy{width:100%;padding:12px;background:var(--surf2);color:var(--txt);border:1px solid var(--bdr);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;margin-top:8px}
+  .btn-danger{padding:5px 10px;background:none;border:1px solid rgba(248,113,113,.3);border-radius:5px;color:var(--red);font-size:11px;cursor:pointer}
 
-  /* ── LOADING ── */
-  #loading-overlay {
-    display:none; position:fixed; inset:0; background:rgba(13,13,15,0.92);
-    z-index:200; align-items:center; justify-content:center; flex-direction:column; gap:16px;
-  }
-  #loading-overlay.active { display:flex; }
-  .spinner { width:40px; height:40px; border:3px solid var(--bdr); border-top-color:var(--acc); border-radius:50%; animation:spin 0.8s linear infinite; }
-  @keyframes spin { to { transform:rotate(360deg); } }
-  .loading-txt { font-family:'Bebas Neue',sans-serif; font-size:14px; letter-spacing:2px; color:var(--mut); }
+  .error-box{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);border-radius:8px;padding:12px 14px;color:var(--red);font-size:12px;margin-bottom:10px}
 
-  /* ── PLAN DISPLAY ── */
-  .plan-day { background:var(--surf); border:1px solid var(--bdr); border-radius:10px; margin-bottom:10px; overflow:hidden; }
-  .plan-day-header { padding:12px 14px 10px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; }
-  .plan-day-header:active { background:var(--surf2); }
-  .plan-day-title { font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:1px; color:var(--txt); }
-  .plan-day-sub { font-size:11px; color:var(--mut); margin-top:2px; }
-  .plan-day-chevron { font-size:12px; color:var(--mut); transition:transform .2s; }
-  .plan-day-chevron.open { transform:rotate(180deg); }
-  .plan-day-body { display:none; border-top:1px solid var(--bdr); }
-  .plan-day-body.open { display:block; }
+  /* LOADING */
+  #loading{display:none;position:fixed;inset:0;background:rgba(13,13,15,.92);z-index:200;align-items:center;justify-content:center;flex-direction:column;gap:16px}
+  #loading.on{display:flex}
+  .spinner{width:36px;height:36px;border:3px solid var(--bdr);border-top-color:var(--acc);border-radius:50%;animation:spin .8s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .loading-txt{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;color:var(--mut)}
 
-  .meal-section { padding:12px 14px; border-bottom:1px solid var(--bdr); }
-  .meal-section:last-child { border-bottom:none; }
-  .meal-type { font-family:'Bebas Neue',sans-serif; font-size:10px; letter-spacing:2px; color:var(--acc); margin-bottom:6px; }
-  .meal-name { font-size:15px; font-weight:600; color:var(--txt); margin-bottom:4px; }
-  .meal-desc { font-size:12px; color:var(--mut); line-height:1.6; margin-bottom:8px; }
+  /* PLAN */
+  .day-card{background:var(--surf);border:1px solid var(--bdr);border-radius:10px;margin-bottom:10px;overflow:hidden}
+  .day-header{padding:12px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start}
+  .day-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;color:var(--txt)}
+  .day-training{font-size:11px;color:var(--acc2);margin-top:2px}
+  .day-body{display:none;border-top:1px solid var(--bdr)}
+  .day-body.open{display:block}
 
-  .meal-tags { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:8px; }
-  .meal-tag { font-size:9px; padding:2px 7px; border-radius:3px; font-weight:700; letter-spacing:.5px; text-transform:uppercase; }
-  .tag-post  { background:rgba(74,222,128,0.1);  color:var(--grn);  border:1px solid rgba(74,222,128,0.25); }
-  .tag-pre   { background:rgba(96,165,250,0.1);  color:var(--blue); border:1px solid rgba(96,165,250,0.25); }
-  .tag-charge{ background:rgba(232,255,71,0.08); color:var(--acc);  border:1px solid rgba(232,255,71,0.2); }
-  .tag-recup { background:rgba(255,107,53,0.1);  color:var(--acc2); border:1px solid rgba(255,107,53,0.25); }
-  .tag-anti  { background:rgba(167,139,250,0.1); color:var(--purp); border:1px solid rgba(167,139,250,0.25); }
-  .tag-leger { background:rgba(107,107,120,0.15);color:var(--mut);  border:1px solid rgba(107,107,120,0.3); }
-  .tag-time  { background:rgba(255,149,0,0.08);  color:var(--warn); border:1px solid rgba(255,149,0,0.25); }
+  .meal-section{padding:10px 14px;border-bottom:1px solid var(--bdr)}
+  .meal-section:last-child{border-bottom:none}
+  .meal-header{display:flex;justify-content:space-between;align-items:flex-start;cursor:pointer}
+  .meal-type{font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:2px;color:var(--acc);margin-bottom:2px}
+  .meal-name{font-size:14px;font-weight:600;color:var(--txt)}
+  .meal-meta{font-size:11px;color:var(--mut);margin-top:2px}
+  .meal-detail{display:none;margin-top:10px}
+  .meal-detail.open{display:block}
+  .meal-desc{font-size:12px;color:#c8c8c8;line-height:1.6;margin-bottom:8px}
 
-  .macros-row { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-bottom:8px; }
-  .macro-box { background:var(--surf2); border:1px solid var(--bdr); border-radius:6px; padding:7px 6px; text-align:center; }
-  .macro-val { font-family:'Bebas Neue',sans-serif; font-size:18px; color:var(--acc); }
-  .macro-lbl { font-size:8px; color:var(--mut); text-transform:uppercase; letter-spacing:.5px; }
+  .tags-row{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+  .tag{font-size:9px;padding:2px 7px;border-radius:3px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+  .tag-post{background:rgba(74,222,128,.1);color:var(--grn);border:1px solid rgba(74,222,128,.25)}
+  .tag-pre{background:rgba(96,165,250,.1);color:#60a5fa;border:1px solid rgba(96,165,250,.25)}
+  .tag-charge{background:rgba(232,255,71,.08);color:var(--acc);border:1px solid rgba(232,255,71,.2)}
+  .tag-recup{background:rgba(255,107,53,.1);color:var(--acc2);border:1px solid rgba(255,107,53,.25)}
+  .tag-anti{background:rgba(167,139,250,.1);color:var(--purp);border:1px solid rgba(167,139,250,.25)}
+  .tag-leger{background:rgba(107,107,120,.15);color:var(--mut);border:1px solid rgba(107,107,120,.3)}
+  .tag-time{background:rgba(255,149,0,.08);color:var(--warn);border:1px solid rgba(255,149,0,.25)}
 
-  .micro-note { background:rgba(167,139,250,0.06); border:1px solid rgba(167,139,250,0.2); border-radius:6px; padding:8px 10px; font-size:11px; color:#c8c8c8; line-height:1.6; margin-bottom:8px; }
-  .micro-note strong { color:var(--purp); }
+  .macros-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px}
+  .macro-box{background:var(--surf2);border:1px solid var(--bdr);border-radius:6px;padding:7px 6px;text-align:center}
+  .macro-val{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--acc)}
+  .macro-lbl{font-size:8px;color:var(--mut);text-transform:uppercase;letter-spacing:.5px}
 
-  .recipe-steps { margin-top:2px; }
-  .recipe-steps li { font-size:12px; color:var(--mut); line-height:1.6; margin-bottom:3px; padding-left:4px; }
+  .micro-note{background:rgba(167,139,250,.06);border:1px solid rgba(167,139,250,.2);border-radius:6px;padding:8px 10px;font-size:11px;color:#c8c8c8;line-height:1.6;margin-bottom:8px}
+  .micro-note strong{color:var(--purp)}
 
-  /* ── COURSES ── */
-  .courses-pre { background:var(--surf2); border:1px solid var(--bdr); border-radius:8px; padding:12px; font-size:12px; line-height:1.8; white-space:pre-wrap; color:var(--txt); margin-bottom:10px; font-family:monospace; }
+  .steps-list{padding-left:16px}
+  .steps-list li{font-size:12px;color:var(--mut);line-height:1.6;margin-bottom:3px}
 
-  /* ── JOURNAL ── */
-  .journal-item { background:var(--surf2); border:1px solid var(--bdr); border-radius:8px; padding:12px 14px; margin-bottom:8px; }
-  .journal-date { font-family:'Bebas Neue',sans-serif; font-size:12px; letter-spacing:1px; color:var(--acc); margin-bottom:4px; }
-  .journal-meals { font-size:12px; color:#c8c8c8; line-height:1.7; }
-  .journal-note { font-size:11px; color:var(--mut); margin-top:6px; font-style:italic; }
-  .journal-tags { display:flex; flex-wrap:wrap; gap:4px; margin-top:6px; }
+  /* COURSES */
+  .courses-cat{margin-bottom:14px}
+  .courses-cat-title{font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:2px;color:var(--acc);margin-bottom:6px}
+  .courses-item{font-size:13px;color:var(--txt);padding:5px 0;border-bottom:1px solid var(--bdr)}
 
-  /* ── RATING ── */
-  .rating-row { display:flex; gap:4px; margin-top:8px; }
-  .star-btn { font-size:18px; background:none; border:none; cursor:pointer; opacity:.3; }
-  .star-btn.active { opacity:1; }
+  /* JOURNAL */
+  .journal-item{background:var(--surf2);border:1px solid var(--bdr);border-radius:8px;padding:12px 14px;margin-bottom:8px}
+  .journal-date{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:1px;color:var(--acc);margin-bottom:4px}
+  .journal-meals{font-size:12px;color:#c8c8c8;line-height:1.7}
+  .journal-summary{font-size:11px;color:var(--mut);margin-top:6px;font-style:italic}
+  .journal-foot{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+  .journal-meta{font-size:10px;color:var(--mut)}
 
-  /* ── EMPTY STATE ── */
-  .empty-state { text-align:center; padding:40px 20px; color:var(--mut); }
-  .empty-icon { font-size:40px; margin-bottom:12px; }
-  .empty-txt { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:2px; }
-  .empty-sub { font-size:12px; margin-top:6px; }
+  .empty-state{text-align:center;padding:40px 20px;color:var(--mut)}
+  .empty-icon{font-size:40px;margin-bottom:12px}
+  .empty-title{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px}
+  .empty-sub{font-size:12px;margin-top:6px}
 
-  /* ── DIVIDER ── */
-  .divider { display:flex; align-items:center; gap:8px; margin:16px 0 8px; }
-  .divider-line { flex:1; height:1px; background:var(--bdr); }
-  .divider-lbl { font-family:'Bebas Neue',sans-serif; font-size:9px; letter-spacing:2px; color:var(--mut); white-space:nowrap; }
-
-  /* ── ERROR ── */
-  .error-box { background:rgba(248,113,113,0.1); border:1px solid rgba(248,113,113,0.3); border-radius:8px; padding:12px 14px; color:var(--red); font-size:12px; line-height:1.6; margin-bottom:10px; }
+  .summary-card{background:var(--surf);border:1px solid rgba(232,255,71,.3);border-radius:10px;padding:14px;margin-bottom:12px}
+  .summary-lbl{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:2px;color:var(--mut);margin-bottom:6px}
+  .summary-txt{font-size:12px;color:#c8c8c8;line-height:1.7}
 </style>
 </head>
 <body>
 
-<!-- LOADING OVERLAY -->
-<div id="loading-overlay">
-  <div class="spinner"></div>
-  <div class="loading-txt" id="loading-txt">Génération en cours...</div>
-</div>
+<div id="loading"><div class="spinner"></div><div class="loading-txt">Génération en cours...</div></div>
 
-<!-- HEADER -->
 <div id="header">
-  <div class="header-row">
+  <div id="header-top">
     <div>
-      <div class="bb header-label">Coach Nutrition Trail</div>
-      <div class="bb header-title">Plan Semaine</div>
+      <div class="bb" style="font-size:10px;letter-spacing:3px;color:var(--acc);margin-bottom:2px">Coach Nutrition Trail</div>
+      <div class="bb" style="font-size:28px;letter-spacing:1px;line-height:1;color:var(--txt)">Plan Semaine</div>
     </div>
-    <span class="header-badge" id="week-badge">Nouveau plan</span>
+    <span id="session-badge">Nouveau plan</span>
   </div>
   <div id="tabs">
     <button class="tab-btn active" data-tab="config">Config</button>
@@ -186,54 +142,53 @@
   </div>
 </div>
 
-<!-- CONTENT -->
 <div id="content">
 
-  <!-- ══ CONFIG ══ -->
+  <!-- CONFIG -->
   <div class="tab-pane active" id="tab-config">
-
     <div class="card accent">
-      <div class="section-lbl">Semaine du</div>
+      <div class="section-lbl">Configuration</div>
+
       <div class="form-group">
-        <label class="form-label">Contexte Trail</label>
-        <div class="btn-group" id="ctx-group">
-          <button class="toggle-btn active" data-val="charge">Semaine chargée (&gt;50km)</button>
-          <button class="toggle-btn" data-val="recup">Récup post-course</button>
-          <button class="toggle-btn" data-val="normale">Semaine normale</button>
-          <button class="toggle-btn" data-val="affutage">Affûtage J-7</button>
+        <label class="form-lbl">Contexte Trail</label>
+        <div class="btn-group" id="ctx-btns">
+          <button class="toggle-btn active-ora" data-ctx="charge">Semaine chargée (&gt;50km)</button>
+          <button class="toggle-btn" data-ctx="recup">Récup post-course</button>
+          <button class="toggle-btn" data-ctx="normale">Semaine normale</button>
+          <button class="toggle-btn" data-ctx="affutage">Affûtage J-7</button>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="form-label">Nombre de jours à couvrir</label>
-        <div class="days-row" id="days-group">
-          <button class="day-btn" data-val="1">1</button>
-          <button class="day-btn" data-val="2">2</button>
-          <button class="day-btn active" data-val="3">3</button>
-          <button class="day-btn" data-val="4">4</button>
-          <button class="day-btn" data-val="5">5</button>
-          <button class="day-btn" data-val="6">6</button>
-          <button class="day-btn" data-val="7">7</button>
+        <label class="form-lbl">Nombre de jours</label>
+        <div class="days-row" id="days-btns">
+          <button class="day-btn" data-d="1">1</button>
+          <button class="day-btn" data-d="2">2</button>
+          <button class="day-btn active" data-d="3">3</button>
+          <button class="day-btn" data-d="4">4</button>
+          <button class="day-btn" data-d="5">5</button>
+          <button class="day-btn" data-d="6">6</button>
+          <button class="day-btn" data-d="7">7</button>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="form-label">Format repas</label>
-        <div class="btn-group" id="format-group">
-          <button class="toggle-btn active" data-val="solo">Solo</button>
-          <button class="toggle-btn" data-val="couple">Couple</button>
-          <button class="toggle-btn" data-val="famille">Famille</button>
+        <label class="form-lbl">Format repas</label>
+        <div class="btn-group" id="format-btns">
+          <button class="toggle-btn active" data-fmt="solo">Solo</button>
+          <button class="toggle-btn" data-fmt="couple">Couple</button>
+          <button class="toggle-btn" data-fmt="famille">Famille</button>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="form-label">Envies / Exclusions cette semaine</label>
-        <textarea id="envies-input" placeholder="Ex: pas de riz, j'ai du poulet à finir, envie de méditerranéen..."></textarea>
+        <label class="form-lbl">Envies / Exclusions</label>
+        <textarea id="envies" placeholder="Ex: pas de riz, j'ai du poulet à finir, envie de méditerranéen..."></textarea>
       </div>
 
       <div class="form-group">
-        <label class="form-label">Entraînements prévus cette semaine</label>
-        <textarea id="trainings-input" placeholder="Ex: sortie longue samedi 3h, interval training jeudi, repos dimanche..."></textarea>
+        <label class="form-lbl">Entraînements prévus</label>
+        <textarea id="trainings" placeholder="Ex: sortie longue samedi 3h, interval training jeudi..."></textarea>
       </div>
     </div>
 
@@ -241,442 +196,277 @@
     <button class="btn-primary" id="gen-btn" onclick="generatePlan()">Générer le plan semaine</button>
   </div>
 
-  <!-- ══ PLAN ══ -->
+  <!-- PLAN -->
   <div class="tab-pane" id="tab-plan">
     <div id="plan-content">
-      <div class="empty-state">
-        <div class="empty-icon">🥗</div>
-        <div class="bb empty-txt">Aucun plan généré</div>
-        <div class="empty-sub">Configure et génère ton plan depuis l'onglet Config</div>
-      </div>
+      <div class="empty-state"><div class="empty-icon">🥗</div><div class="empty-title">Aucun plan généré</div><div class="empty-sub">Configure depuis l'onglet Config</div></div>
     </div>
   </div>
 
-  <!-- ══ COURSES ══ -->
+  <!-- COURSES -->
   <div class="tab-pane" id="tab-courses">
     <div id="courses-content">
-      <div class="empty-state">
-        <div class="empty-icon">🛒</div>
-        <div class="bb empty-txt">Liste vide</div>
-        <div class="empty-sub">Génère un plan pour voir ta liste de courses</div>
-      </div>
+      <div class="empty-state"><div class="empty-icon">🛒</div><div class="empty-title">Liste vide</div><div class="empty-sub">Génère un plan d'abord</div></div>
     </div>
   </div>
 
-  <!-- ══ JOURNAL ══ -->
+  <!-- JOURNAL -->
   <div class="tab-pane" id="tab-journal">
-    <div class="card" style="margin-bottom:10px;">
-      <div class="section-lbl">Historique des plans</div>
-      <div style="font-size:12px;color:var(--mut);line-height:1.6;">
-        Les recettes des 4 dernières semaines sont mémorisées pour éviter les répétitions.
-        Tu peux noter chaque plan pour affiner les prochaines générations.
-      </div>
+    <div class="card" style="margin-bottom:10px">
+      <div class="section-lbl">Historique</div>
+      <div style="font-size:12px;color:var(--mut);line-height:1.6">Les recettes des 4 dernières semaines sont automatiquement injectées pour éviter les répétitions.</div>
     </div>
     <div id="journal-content">
-      <div class="empty-state">
-        <div class="empty-icon">📓</div>
-        <div class="bb empty-txt">Journal vide</div>
-        <div class="empty-sub">Tes plans apparaîtront ici après génération</div>
-      </div>
+      <div class="empty-state"><div class="empty-icon">📓</div><div class="empty-title">Journal vide</div></div>
     </div>
   </div>
 
-</div><!-- /content -->
+</div>
 
 <script>
-// ═══════════════════════════════════════════════════════
-// STATE
-// ═══════════════════════════════════════════════════════
-const HIST_KEY = "nutrition:history:v1";
-const PLAN_KEY = "nutrition:current:v1";
-
-let currentPlan = null;
-let history     = [];
-let activeTab   = "config";
-
-// Form state
-let cfg = {
-  context:   "charge",
-  days:      3,
-  format:    "solo",
-  envies:    "",
-  trainings: "",
+const HIST_KEY = "nutrition:history:v2";
+const CTX_DESC = {
+  charge:  "semaine trail chargée >50km. Priorité charge glucidique, récupération rapide, anti-inflammatoire.",
+  recup:   "semaine récup post-course. Priorité protéines réparatrices, légumes, anti-inflammatoire.",
+  normale: "semaine trail normale. Bonne variété, orienté performance.",
+  affutage:"semaine affûtage J-7. Digestibilité maximale, recettes éprouvées, pas d'expérimentation.",
+};
+const FORMAT_DESC = { solo:"1 personne", couple:"2 personnes", famille:"famille avec enfants" };
+const TAG_CLASS = {
+  "post-effort":"tag-post","pre-effort":"tag-pre","charge-glucidique":"tag-charge",
+  "récup-protéique":"tag-recup","anti-inflammatoire":"tag-anti","léger":"tag-leger"
 };
 
-// ═══════════════════════════════════════════════════════
-// STORAGE
-// ═══════════════════════════════════════════════════════
-async function loadStorage() {
-  try {
-    const h = await window.storage.get(HIST_KEY);
-    if (h) history = JSON.parse(h.value);
-  } catch(e) {}
-  try {
-    const p = await window.storage.get(PLAN_KEY);
-    if (p) {
-      currentPlan = JSON.parse(p.value);
-      renderPlan(currentPlan);
-      renderCourses(currentPlan);
-    }
-  } catch(e) {}
+let cfg = { ctx:"charge", days:3, format:"solo" };
+let currentPlan = null;
+let history = [];
+
+// ── STORAGE ──
+async function loadHistory() {
+  try { const h = await window.storage.get(HIST_KEY); if(h) history = JSON.parse(h.value); } catch(e){}
   renderJournal();
 }
-
 async function saveHistory() {
-  try {
-    await window.storage.set(HIST_KEY, JSON.stringify(history));
-  } catch(e) {}
+  try { await window.storage.set(HIST_KEY, JSON.stringify(history)); } catch(e){}
 }
 
-async function saveCurrentPlan(plan) {
-  try {
-    await window.storage.set(PLAN_KEY, JSON.stringify(plan));
-  } catch(e) {}
-}
-
-// ═══════════════════════════════════════════════════════
-// TABS
-// ═══════════════════════════════════════════════════════
+// ── TABS ──
 function setTab(name) {
-  activeTab = name;
-  document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === name));
-  document.querySelectorAll(".tab-pane").forEach(p => p.classList.toggle("active", p.id === "tab-" + name));
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab===name));
+  document.querySelectorAll(".tab-pane").forEach(p => p.classList.toggle("active", p.id==="tab-"+name));
 }
-document.querySelectorAll(".tab-btn").forEach(b => b.addEventListener("click", () => setTab(b.dataset.tab)));
+document.querySelectorAll(".tab-btn").forEach(b => b.addEventListener("click", ()=>setTab(b.dataset.tab)));
 
-// ═══════════════════════════════════════════════════════
-// FORM INTERACTIONS
-// ═══════════════════════════════════════════════════════
-document.querySelectorAll("#ctx-group .toggle-btn").forEach(b => {
+// ── CONFIG BUTTONS ──
+document.querySelectorAll("#ctx-btns .toggle-btn").forEach(b => {
   b.addEventListener("click", () => {
-    document.querySelectorAll("#ctx-group .toggle-btn").forEach(x => x.classList.remove("active"));
+    cfg.ctx = b.dataset.ctx;
+    document.querySelectorAll("#ctx-btns .toggle-btn").forEach(x => x.className="toggle-btn");
+    const cls = {charge:"toggle-btn active-ora",recup:"toggle-btn active-grn",normale:"toggle-btn active",affutage:"toggle-btn active-warn"};
+    b.className = cls[cfg.ctx];
+  });
+});
+document.querySelectorAll("#days-btns .day-btn").forEach(b => {
+  b.addEventListener("click", () => {
+    cfg.days = +b.dataset.d;
+    document.querySelectorAll("#days-btns .day-btn").forEach(x => x.classList.remove("active"));
     b.classList.add("active");
-    cfg.context = b.dataset.val;
+  });
+});
+document.querySelectorAll("#format-btns .toggle-btn").forEach(b => {
+  b.addEventListener("click", () => {
+    cfg.format = b.dataset.fmt;
+    document.querySelectorAll("#format-btns .toggle-btn").forEach(x => x.classList.remove("active"));
+    b.classList.add("active");
   });
 });
 
-document.querySelectorAll("#days-group .day-btn").forEach(b => {
-  b.addEventListener("click", () => {
-    document.querySelectorAll("#days-group .day-btn").forEach(x => x.classList.remove("active"));
-    b.classList.add("active");
-    cfg.days = +b.dataset.val;
-  });
-});
-
-document.querySelectorAll("#format-group .toggle-btn").forEach(b => {
-  b.addEventListener("click", () => {
-    document.querySelectorAll("#format-group .toggle-btn").forEach(x => x.classList.remove("active"));
-    b.classList.add("active");
-    cfg.format = b.dataset.val;
-  });
-});
-
-document.getElementById("envies-input").addEventListener("input", e => cfg.envies = e.target.value);
-document.getElementById("trainings-input").addEventListener("input", e => cfg.trainings = e.target.value);
-
-// ═══════════════════════════════════════════════════════
-// BUILD PROMPT
-// ═══════════════════════════════════════════════════════
-function buildRecentMeals() {
-  const recent = history.slice(0, 4);
-  if (!recent.length) return "Aucune recette récente à éviter.";
-  const names = recent.flatMap(p => (p.days || []).flatMap(d => [
-    d.lunch && d.lunch.name, d.dinner && d.dinner.name
-  ].filter(Boolean)));
-  return "Recettes récentes à NE PAS répéter :\n" + names.map(n => "- " + n).join("\n");
-}
-
-const CTX_DESC = {
-  charge:   "semaine trail chargée (>50km prévus). Priorité charge glucidique, récupération rapide, anti-inflammatoire.",
-  recup:    "semaine de récupération post-course. Priorité protéines réparatrices, légumes, anti-inflammatoire, pas de charge excessive.",
-  normale:  "semaine trail normale équilibrée. Bonne variété, orienté performance.",
-  affutage: "semaine d'affûtage J-7 avant course. Digestibilité maximale, recettes éprouvées, pas d'expérimentation.",
-};
-
-const FORMAT_DESC = {
-  solo: "1 personne",
-  couple: "2 personnes",
-  famille: "famille avec enfants (portions adaptées enfants aussi)",
-};
-
+// ── PROMPT ──
 function buildPrompt() {
-  return `Tu es un coach en neuro-nutrition spécialisé trail running. Génère un plan alimentaire hebdomadaire complet.
-
-CONTEXTE : ${CTX_DESC[cfg.context]}
-JOURS : ${cfg.days} jours
+  const recent = history.slice(0,4).flatMap(p=>(p.days||[]).flatMap(d=>[d.lunch?.name,d.dinner?.name].filter(Boolean)));
+  const envies = document.getElementById("envies").value;
+  const trainings = document.getElementById("trainings").value;
+  return `Tu es coach neuro-nutrition trail running. Génère un plan alimentaire.
+CONTEXTE : ${CTX_DESC[cfg.ctx]}
+JOURS : ${cfg.days}
 FORMAT : ${FORMAT_DESC[cfg.format]}
-${cfg.envies ? "ENVIES / EXCLUSIONS : " + cfg.envies : ""}
-${cfg.trainings ? "ENTRAÎNEMENTS PRÉVUS : " + cfg.trainings : ""}
+${envies?"ENVIES/EXCLUSIONS : "+envies:""}
+${trainings?"ENTRAÎNEMENTS : "+trainings:""}
+${recent.length?"NE PAS RÉPÉTER :\n"+recent.map(n=>"- "+n).join("\n"):""}
 
-${buildRecentMeals()}
+Chaque jour = 1 déjeuner + 1 dîner.
+Tags possibles : post-effort, pre-effort, charge-glucidique, récup-protéique, anti-inflammatoire, léger.
+Macros (protéines/glucides/lipides en g), prepTime (<30min prioritaire), microNote (magnésium/fer/oméga3/tryptophane/tyrosine/axe HPA), 3-5 étapes simples.
 
-RÈGLES :
-- Chaque jour = 1 déjeuner + 1 dîner
-- Tags possibles par repas : post-effort, pre-effort, charge-glucidique, récup-protéique, anti-inflammatoire, léger
-- Macros estimés par repas (protéines g, glucides g, lipides g)
-- Temps de préparation en minutes
-- Note micronutriments clés (magnésium, fer, oméga-3, vitamine D, etc.) quand pertinent
-- 3-5 étapes de préparation simples par recette
-- Si entraînement mentionné un jour précis : adapter le repas avant/après
-- Orientation neuro-nutrition : dopamine (tyrosine), sérotonine (tryptophane), axe HPA (adaptogènes alimentaires) quand pertinent
-
-RÉPONDS UNIQUEMENT EN JSON valide, sans markdown, sans \`\`\`, avec cette structure exacte :
-{
-  "context": "label court du contexte",
-  "generatedAt": "date ISO",
-  "days": [
-    {
-      "dayLabel": "Jour 1 — Lundi",
-      "trainingNote": "Sortie 1h prévue (ou null)",
-      "lunch": {
-        "name": "Nom recette",
-        "description": "Description courte 1-2 phrases",
-        "tags": ["post-effort"],
-        "prepTime": 20,
-        "macros": { "proteines": 35, "glucides": 60, "lipides": 12 },
-        "microNote": "Riche en magnésium (récup musculaire) et tryptophane (séroto...)",
-        "steps": ["Étape 1", "Étape 2", "Étape 3"]
-      },
-      "dinner": {
-        "name": "Nom recette",
-        "description": "...",
-        "tags": ["anti-inflammatoire"],
-        "prepTime": 25,
-        "macros": { "proteines": 40, "glucides": 45, "lipides": 18 },
-        "microNote": "...",
-        "steps": ["...", "...", "..."]
-      }
-    }
-  ],
-  "shoppingList": {
-    "Protéines": ["Poulet 600g", "Saumon 400g"],
-    "Féculents": ["Riz complet 500g", "Patate douce 1kg"],
-    "Légumes": ["Épinards 300g", "Courgettes x3"],
-    "Fruits": ["Bananes x6", "Myrtilles 250g"],
-    "Graisses & oléagineux": ["Huile olive", "Amandes 200g"],
-    "Condiments & divers": ["Curcuma", "Gingembre frais"]
-  },
-  "weekSummary": "Résumé court du plan en 2-3 phrases : logique nutritionnelle, points forts, timing trail."
-}`;
+RÉPONDS UNIQUEMENT EN JSON valide, sans markdown ni backticks :
+{"context":"...","days":[{"dayLabel":"Jour 1","trainingNote":null,"lunch":{"name":"...","description":"...","tags":["post-effort"],"prepTime":20,"macros":{"proteines":35,"glucides":60,"lipides":12},"microNote":"...","steps":["...","...","..."]},"dinner":{"name":"...","description":"...","tags":[],"prepTime":25,"macros":{"proteines":40,"glucides":45,"lipides":18},"microNote":"...","steps":["...","..."]}}],"shoppingList":{"Protéines":["Poulet 600g"],"Féculents":["Riz complet 500g"],"Légumes":["Épinards 300g"],"Fruits":["Bananes x6"],"Graisses & oléagineux":["Huile olive"],"Condiments & divers":["Curcuma"]},"weekSummary":"..."}`;
 }
 
-// ═══════════════════════════════════════════════════════
-// GENERATE
-// ═══════════════════════════════════════════════════════
+// ── GENERATE ──
 async function generatePlan() {
   document.getElementById("error-zone").innerHTML = "";
-  showLoading("Génération du plan en cours...");
+  document.getElementById("loading").classList.add("on");
   document.getElementById("gen-btn").disabled = true;
-
   try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 4000,
-        messages: [{ role: "user", content: buildPrompt() }],
-      })
+    const resp = await fetch("https://api.anthropic.com/v1/messages", {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ model:"claude-sonnet-4-20250514", max_tokens:4000,
+        messages:[{role:"user",content:buildPrompt()}] })
     });
-
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error?.message || "Erreur API");
-
-    const raw = data.content.map(i => i.text || "").join("");
-    const clean = raw.replace(/```json|```/g, "").trim();
-    const plan = JSON.parse(clean);
-    plan.cfg = { ...cfg };
-    plan.id = Date.now();
-
-    // Sauvegarder
+    const data = await resp.json();
+    if(!resp.ok) throw new Error(data.error?.message||"Erreur API");
+    const raw = data.content.map(i=>i.text||"").join("");
+    const plan = JSON.parse(raw.replace(/```json|```/g,"").trim());
+    plan.id = Date.now(); plan.generatedAt = new Date().toISOString(); plan.cfg = {...cfg};
     currentPlan = plan;
-    await saveCurrentPlan(plan);
-
-    // Ajouter au journal
-    history.unshift({ id: plan.id, generatedAt: new Date().toISOString(), context: plan.context, cfg: plan.cfg, days: plan.days, weekSummary: plan.weekSummary });
-    if (history.length > 12) history = history.slice(0, 12);
+    history.unshift(plan);
+    if(history.length>12) history = history.slice(0,12);
     await saveHistory();
-
-    // Render
+    document.getElementById("session-badge").textContent = plan.context||"Prêt";
     renderPlan(plan);
     renderCourses(plan);
     renderJournal();
-
-    // Badge
-    document.getElementById("week-badge").textContent = plan.context;
-
-    hideLoading();
     setTab("plan");
-
-  } catch(err) {
-    hideLoading();
-    document.getElementById("gen-btn").disabled = false;
-    document.getElementById("error-zone").innerHTML = `<div class="error-box">Erreur : ${err.message}</div>`;
+  } catch(e) {
+    document.getElementById("error-zone").innerHTML = `<div class="error-box">Erreur : ${e.message}</div>`;
   }
+  document.getElementById("loading").classList.remove("on");
+  document.getElementById("gen-btn").disabled = false;
 }
 
-// ═══════════════════════════════════════════════════════
-// RENDER PLAN
-// ═══════════════════════════════════════════════════════
-const TAG_CLASSES = {
-  "post-effort":       "tag-post",
-  "pre-effort":        "tag-pre",
-  "charge-glucidique": "tag-charge",
-  "récup-protéique":   "tag-recup",
-  "anti-inflammatoire":"tag-anti",
-  "léger":             "tag-leger",
-};
-
-function renderTags(tags) {
-  if (!tags || !tags.length) return "";
-  return tags.map(t => `<span class="meal-tag ${TAG_CLASSES[t] || 'tag-leger'}">${t}</span>`).join("");
+// ── RENDER PLAN ──
+function tagHtml(tags) {
+  if(!tags||!tags.length) return "";
+  return tags.map(t=>`<span class="tag ${TAG_CLASS[t]||'tag-leger'}">${t}</span>`).join("");
 }
 
-function renderMeal(meal, type) {
-  if (!meal) return "";
+function renderMeal(meal, type, idx) {
+  if(!meal) return "";
+  const detailId = `meal-detail-${type}-${idx}`;
+  const steps = meal.steps?.length ? `<ol class="steps-list">${meal.steps.map(s=>`<li>${s}</li>`).join("")}</ol>` : "";
   return `
     <div class="meal-section">
-      <div class="meal-type">${type}</div>
-      <div class="meal-name">${meal.name}</div>
-      <div class="meal-desc">${meal.description}</div>
-      <div class="meal-tags">
-        ${renderTags(meal.tags)}
-        ${meal.prepTime ? `<span class="meal-tag tag-time">⏱ ${meal.prepTime} min</span>` : ""}
+      <div class="meal-header" onclick="toggleMeal('${detailId}', this)">
+        <div>
+          <div class="meal-type">${type}</div>
+          <div class="meal-name">${meal.name}</div>
+          <div class="meal-meta">⏱ ${meal.prepTime||"?"} min${meal.macros?` · ${meal.macros.proteines}P / ${meal.macros.glucides}G / ${meal.macros.lipides}L`:""}</div>
+        </div>
+        <span style="color:var(--mut);font-size:12px;margin-top:4px">▼</span>
       </div>
-      <div class="macros-row">
-        <div class="macro-box"><div class="macro-val">${meal.macros?.proteines ?? "-"}g</div><div class="macro-lbl">Protéines</div></div>
-        <div class="macro-box"><div class="macro-val">${meal.macros?.glucides ?? "-"}g</div><div class="macro-lbl">Glucides</div></div>
-        <div class="macro-box"><div class="macro-val">${meal.macros?.lipides ?? "-"}g</div><div class="macro-lbl">Lipides</div></div>
+      <div class="meal-detail" id="${detailId}">
+        ${meal.description?`<div class="meal-desc">${meal.description}</div>`:""}
+        <div class="tags-row">
+          ${tagHtml(meal.tags)}
+          ${meal.prepTime?`<span class="tag tag-time">⏱ ${meal.prepTime} min</span>`:""}
+        </div>
+        <div class="macros-grid">
+          <div class="macro-box"><div class="macro-val">${meal.macros?.proteines??"-"}g</div><div class="macro-lbl">Protéines</div></div>
+          <div class="macro-box"><div class="macro-val">${meal.macros?.glucides??"-"}g</div><div class="macro-lbl">Glucides</div></div>
+          <div class="macro-box"><div class="macro-val">${meal.macros?.lipides??"-"}g</div><div class="macro-lbl">Lipides</div></div>
+        </div>
+        ${meal.microNote?`<div class="micro-note"><strong>Micro :</strong> ${meal.microNote}</div>`:""}
+        ${steps}
       </div>
-      ${meal.microNote ? `<div class="micro-note"><strong>Micro :</strong> ${meal.microNote}</div>` : ""}
-      ${meal.steps && meal.steps.length ? `
-        <div class="recipe-steps">
-          <ol style="padding-left:16px">${meal.steps.map(s => `<li>${s}</li>`).join("")}</ol>
-        </div>` : ""}
     </div>`;
+}
+
+function toggleMeal(id, header) {
+  const d = document.getElementById(id);
+  const open = d.classList.toggle("open");
+  header.querySelector("span").textContent = open ? "▲" : "▼";
 }
 
 function renderPlan(plan) {
-  if (!plan || !plan.days) return;
+  if(!plan?.days) return;
   let html = "";
-
-  if (plan.weekSummary) {
-    html += `<div class="card accent" style="margin-bottom:10px">
-      <div class="section-lbl">Logique de la semaine</div>
-      <div style="font-size:12px;color:#c8c8c8;line-height:1.7">${plan.weekSummary}</div>
-    </div>`;
+  if(plan.weekSummary) {
+    html += `<div class="summary-card"><div class="summary-lbl">Logique de la semaine</div><div class="summary-txt">${plan.weekSummary}</div></div>`;
   }
-
   plan.days.forEach((day, i) => {
-    html += `<div class="plan-day">
-      <div class="plan-day-header" onclick="toggleDay(${i})">
-        <div>
-          <div class="plan-day-title">${day.dayLabel || "Jour " + (i+1)}</div>
-          ${day.trainingNote ? `<div class="plan-day-sub">🏃 ${day.trainingNote}</div>` : ""}
+    html += `
+      <div class="day-card">
+        <div class="day-header" onclick="toggleDay(${i})">
+          <div>
+            <div class="day-title">${day.dayLabel||"Jour "+(i+1)}</div>
+            ${day.trainingNote?`<div class="day-training">🏃 ${day.trainingNote}</div>`:""}
+          </div>
+          <span id="chev-${i}" style="color:var(--mut);font-size:13px">${i===0?"▲":"▼"}</span>
         </div>
-        <span class="plan-day-chevron" id="chev-${i}">${i === 0 ? "▲" : "▼"}</span>
-      </div>
-      <div class="plan-day-body ${i === 0 ? "open" : ""}" id="day-body-${i}">
-        ${renderMeal(day.lunch, "Déjeuner")}
-        ${renderMeal(day.dinner, "Dîner")}
-      </div>
-    </div>`;
+        <div class="day-body ${i===0?"open":""}" id="day-body-${i}">
+          ${renderMeal(day.lunch,"Déjeuner",i)}
+          ${renderMeal(day.dinner,"Dîner",i)}
+        </div>
+      </div>`;
   });
-
   document.getElementById("plan-content").innerHTML = html;
 }
 
 function toggleDay(i) {
-  const body = document.getElementById("day-body-" + i);
-  const chev = document.getElementById("chev-" + i);
-  const open = body.classList.toggle("open");
-  chev.textContent = open ? "▲" : "▼";
+  const b = document.getElementById("day-body-"+i);
+  const c = document.getElementById("chev-"+i);
+  const open = b.classList.toggle("open");
+  c.textContent = open ? "▲" : "▼";
 }
 
-// ═══════════════════════════════════════════════════════
-// RENDER COURSES
-// ═══════════════════════════════════════════════════════
+// ── COURSES ──
 function renderCourses(plan) {
-  if (!plan || !plan.shoppingList) return;
-
-  let txt = `LISTE DE COURSES — ${plan.context?.toUpperCase() || ""}\n`;
-  txt += "─".repeat(40) + "\n\n";
-
+  if(!plan?.shoppingList) return;
+  const total = Object.values(plan.shoppingList).flat().length;
+  let html = `<div class="card">
+    <div class="section-lbl">Liste consolidée</div>
+    <div style="font-size:11px;color:var(--mut);margin-bottom:12px">${total} articles · ${plan.cfg?.days||"?"} jours · ${plan.cfg?.format||""}</div>`;
   Object.entries(plan.shoppingList).forEach(([cat, items]) => {
-    txt += `${cat.toUpperCase()}\n`;
-    items.forEach(item => txt += `  • ${item}\n`);
-    txt += "\n";
+    html += `<div class="courses-cat"><div class="courses-cat-title">${cat}</div>`;
+    items.forEach(item => { html += `<div class="courses-item">· ${item}</div>`; });
+    html += `</div>`;
   });
-
-  const html = `
-    <div class="card" style="margin-bottom:10px">
-      <div class="section-lbl">Liste consolidée</div>
-      <div style="font-size:12px;color:var(--mut);margin-bottom:10px">
-        ${Object.values(plan.shoppingList).flat().length} articles · ${plan.cfg?.days || "?"} jours · ${plan.cfg?.format || ""}
-      </div>
-      <pre class="courses-pre">${txt}</pre>
-      <button class="btn-copy" onclick="copyText(\`${txt.replace(/`/g, "\\`")}\`, this)">▤ Copier la liste</button>
-    </div>`;
-
+  html += `<button class="btn-copy" id="copy-courses-btn" onclick="copyCourses()">▤ Copier la liste</button></div>`;
   document.getElementById("courses-content").innerHTML = html;
 }
 
-// ═══════════════════════════════════════════════════════
-// RENDER JOURNAL
-// ═══════════════════════════════════════════════════════
+function buildCoursesText() {
+  if(!currentPlan?.shoppingList) return "";
+  let t = `COURSES — ${(currentPlan.context||"").toUpperCase()}\n${"─".repeat(32)}\n\n`;
+  Object.entries(currentPlan.shoppingList).forEach(([c,items])=>{t+=`${c.toUpperCase()}\n`;items.forEach(i=>t+=`  • ${i}\n`);t+="\n";});
+  return t;
+}
+
+function copyCourses() {
+  navigator.clipboard.writeText(buildCoursesText()).then(()=>{
+    const btn = document.getElementById("copy-courses-btn");
+    if(btn){btn.textContent="Copié ✓";setTimeout(()=>btn.textContent="▤ Copier la liste",2000);}
+  }).catch(()=>{});
+}
+
+// ── JOURNAL ──
 function renderJournal() {
-  if (!history.length) return;
-
+  if(!history.length) return;
   let html = "";
-  history.forEach((entry, i) => {
-    const date = new Date(entry.generatedAt).toLocaleDateString("fr-FR", { day:"numeric", month:"long", year:"numeric" });
-    const mealNames = (entry.days || []).flatMap(d => [d.lunch?.name, d.dinner?.name].filter(Boolean));
-
+  history.forEach(entry => {
+    const date = new Date(entry.generatedAt).toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"});
+    const meals = (entry.days||[]).flatMap(d=>[d.lunch?.name,d.dinner?.name].filter(Boolean));
     html += `<div class="journal-item">
-      <div class="journal-date">${date} — ${entry.context || ""}</div>
-      <div class="journal-meals">${mealNames.join(" · ")}</div>
-      ${entry.weekSummary ? `<div class="journal-note">${entry.weekSummary}</div>` : ""}
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
-        <div style="font-size:10px;color:var(--mut)">${entry.cfg?.days || "?"} jours · ${entry.cfg?.format || ""}</div>
-        <button class="btn-small danger" onclick="deleteEntry(${entry.id})">Supprimer</button>
+      <div class="journal-date">${date} — ${entry.context||""}</div>
+      <div class="journal-meals">${meals.join(" · ")}</div>
+      ${entry.weekSummary?`<div class="journal-summary">${entry.weekSummary}</div>`:""}
+      <div class="journal-foot">
+        <div class="journal-meta">${entry.cfg?.days||"?"}j · ${entry.cfg?.format||""}</div>
+        <button class="btn-danger" onclick="deleteEntry(${entry.id})">Supprimer</button>
       </div>
     </div>`;
   });
-
   document.getElementById("journal-content").innerHTML = html;
 }
 
 async function deleteEntry(id) {
-  history = history.filter(e => e.id !== id);
+  history = history.filter(e=>e.id!==id);
   await saveHistory();
   renderJournal();
 }
 
-// ═══════════════════════════════════════════════════════
-// UTILS
-// ═══════════════════════════════════════════════════════
-function copyText(txt, btn) {
-  navigator.clipboard.writeText(txt).then(() => {
-    const orig = btn.textContent;
-    btn.textContent = "Copié ✓";
-    setTimeout(() => btn.textContent = orig, 2000);
-  }).catch(() => {});
-}
-
-function showLoading(msg) {
-  document.getElementById("loading-txt").textContent = msg;
-  document.getElementById("loading-overlay").classList.add("active");
-}
-
-function hideLoading() {
-  document.getElementById("loading-overlay").classList.remove("active");
-  document.getElementById("gen-btn").disabled = false;
-}
-
-// ═══════════════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════════════
-loadStorage();
+// ── INIT ──
+loadHistory();
 </script>
 </body>
 </html>
